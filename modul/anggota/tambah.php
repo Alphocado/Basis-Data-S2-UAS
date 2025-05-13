@@ -12,14 +12,14 @@ if (!isset($_SESSION['login']) || $_SESSION['level'] != 'admin') {
 // Proses tambah anggota
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Ambil dan bersihkan input
-    $nama = mysqli_real_escape_string($koneksi, $_POST['username']);
-    $email = mysqli_real_escape_string($koneksi, $_POST['email']);
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-    $no_hp = mysqli_real_escape_string($koneksi, $_POST['no_hp']);
-    $jenis_kelamin = mysqli_real_escape_string($koneksi, $_POST['jenis_kelamin']);
-    $alamat = mysqli_real_escape_string($koneksi, $_POST['alamat']);
-    $kelas = mysqli_real_escape_string($koneksi, $_POST['kelas']);
-    $tanggal_daftar = date('Y-m-d');
+    $nama           = isset($_POST['username']) ? mysqli_real_escape_string($koneksi, $_POST['username']) : '';
+$email          = isset($_POST['email']) ? mysqli_real_escape_string($koneksi, $_POST['email']) : '';
+$password_raw   = isset($_POST['password']) ? $_POST['password'] : '';
+$no_hp          = isset($_POST['no_hp']) ? mysqli_real_escape_string($koneksi, $_POST['no_hp']) : '';
+$jenis_kelamin  = isset($_POST['jenis_kelamin']) ? mysqli_real_escape_string($koneksi, $_POST['jenis_kelamin']) : '';
+$alamat         = isset($_POST['alamat']) ? mysqli_real_escape_string($koneksi, $_POST['alamat']) : '';
+$kelas          = isset($_POST['kelas']) ? mysqli_real_escape_string($koneksi, $_POST['kelas']) : '';
+$tanggal_daftar = date('Y-m-d');
 
     // Validasi input
     $errors = [];
@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Jika tidak ada error, simpan data
     if (empty($errors)) {
         $query = "INSERT INTO anggota (
-            nama, email, password, no_hp, jenis_kelamin, 
+            username, email, password, no_hp, jenis_kelamin, 
             alamat, kelas, tanggal_daftar
         ) VALUES (
             '$nama', '$email', '$password', '$no_hp', '$jenis_kelamin', 
@@ -77,11 +77,11 @@ renderHeader("Tambah Anggota", "anggota");
 
     <form method="post" action="" style="max-width: 600px; margin: 0 auto;">
         <div style="margin-bottom: 15px;">
-            <label for="nama" style="display: block; margin-bottom: 5px;">Nama Lengkap</label>
+            <label for="username" style="display: block; margin-bottom: 5px;">Nama Lengkap</label>
             <input 
                 type="text" 
-                id="nama" 
-                name="nama" 
+                id="username" 
+                name="username" 
                 required 
                 value="<?php echo isset($nama) ? htmlspecialchars($nama) : ''; ?>"
                 style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;"
