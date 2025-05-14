@@ -48,6 +48,18 @@ renderHeader("Daftar Anggota", "anggota");
     </div>
 </div>
 
+<?php 
+// Tampilkan pesan sukses atau error
+if (isset($_SESSION['success'])) {
+    echo "<div class='alert alert-success'>" . $_SESSION['success'] . "</div>";
+    unset($_SESSION['success']);
+}
+else if (isset($_SESSION['error'])) {
+    echo "<div class='alert alert-danger'>" . $_SESSION['error'] . "</div>";
+    unset($_SESSION['error']);
+}
+?>  
+
 <div class="card">
     <!-- Pencarian -->
     <form method="get" class="search-form" style="margin-bottom: 20px; display: flex;">
