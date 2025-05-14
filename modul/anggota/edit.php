@@ -29,7 +29,7 @@ $anggota = mysqli_fetch_assoc($result);
 // Proses edit anggota
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Ambil dan bersihkan input
-    $nama = mysqli_real_escape_string($koneksi, $_POST['username']);
+    $username = mysqli_real_escape_string($koneksi, $_POST['username']);
     $email = mysqli_real_escape_string($koneksi, $_POST['email']);
     $no_hp = mysqli_real_escape_string($koneksi, $_POST['no_hp']);
     $jenis_kelamin = mysqli_real_escape_string($koneksi, $_POST['jenis_kelamin']);
@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Validasi input
     $errors = [];
-    if (empty($nama)) $errors[] = "Nama harus diisi";
+    if (empty($username)) $errors[] = "Nama harus diisi";
     if (empty($email)) $errors[] = "Email harus diisi";
 
     // Cek email sudah terdaftar (kecuali email milik anggota saat ini)
@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Jika tidak ada error, update data
     if (empty($errors)) {
         $query = "UPDATE anggota SET 
-                    nama = '$nama', 
+                    username = '$username', 
                     email = '$email', 
                     no_hp = '$no_hp', 
                     jenis_kelamin = '$jenis_kelamin', 
@@ -103,11 +103,11 @@ renderHeader("Edit Anggota", "anggota");
 
     <form method="post" action="" style="max-width: 600px; margin: 0 auto;">
         <div style="margin-bottom: 15px;">
-            <label for="nama" style="display: block; margin-bottom: 5px;">Nama Lengkap</label>
+            <label for="username" style="display: block; margin-bottom: 5px;">Nama Lengkap</label>
             <input 
                 type="text" 
-                id="nama" 
-                name="nama" 
+                id="username" 
+                name="username" 
                 required 
                 value="<?php echo htmlspecialchars($anggota['username']); ?>"
                 style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;"
