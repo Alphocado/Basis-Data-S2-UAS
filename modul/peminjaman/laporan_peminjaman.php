@@ -26,9 +26,51 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $pesan = "Peminjaman buku ditolak";
                 break;
             case 'kembalikan':
-                $query = "UPDATE peminjaman SET status = 'Dikembalikan' WHERE id_peminjaman = '$id_peminjaman'";
-                $pesan = "Buku berhasil dikembalikan";
-                break;
+              // ambil tanggal rencana
+              $data          = mysqli_fetch_assoc(mysqli_query($koneksi,
+                                  "SELECT tanggal_kembali FROM peminjaman WHERE id_peminjaman='$id_peminjaman'"));
+              $tgl_rencana   = new DateTime($data['tanggal_kembali']);
+              $tgl_aktual    = new DateTime(date('Y-m-d'));
+              $terlambat     = max(0, $tgl_aktual->diff($tgl_rencana)->days);
+              $denda_per_hari = 1000;
+              $total_denda   = $terlambat * $denda_per_hari;
+          
+              // insert pengembalian
+              $q1 = "INSERT INTO pengembalian (
+                          id_peminjaman,
+                          tanggal_dikembalikan,
+                          denda
+                      ) VALUES (
+                          '$id_peminjaman',
+                          '{$tgl_aktual->format('Y-m-d')}',
+                          '$total_denda'
+                      )";
+              mysqli_query($koneksi, $q1);
+          
+              // insert denda ke tabel denda jika ada keterlambatan
+              if ($terlambat > 0) {
+                  $last_id = mysqli_insert_id($koneksi); // ini id_pengembalian
+                  $q2 = "INSERT INTO denda (
+                              id_pengembalian,
+                              jumlah_denda,
+                              nominal_denda,
+                              status_pembayaran
+                          ) VALUES (
+                              '$last_id',
+                              '$terlambat',
+                              '$total_denda',
+                              'Belum'
+                          )";
+                  mysqli_query($koneksi, $q2);
+              }
+          
+              // update status peminjaman
+              $query = "UPDATE peminjaman 
+                        SET status = 'Dikembalikan' 
+                        WHERE id_peminjaman = '$id_peminjaman'";
+              $pesan = "Buku berhasil dikembalikan";
+              break;
+              
         }
 
         if (mysqli_query($koneksi, $query)) {
