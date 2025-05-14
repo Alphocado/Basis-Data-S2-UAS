@@ -1,13 +1,16 @@
 <?php
 // includes/layout.php
 function renderHeader($title = "Sistem Perpustakaan", $activeMenu = "") {
-    // Check if user is logged in
-    if (!isset($_SESSION['login'])) {
-        header("Location: ../login.php");
-        exit();
-    }
+  $active = $activeMenu;
 
-    $userLevel = $_SESSION['level'];
+  // Check if user is logged in
+  if (!isset($_SESSION['login'])) {
+      header("Location: ../login.php");
+      exit();
+  }
+
+  $userLevel = $_SESSION['level'];
+  $isAnggota = ($userLevel === 'anggota');
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -375,13 +378,13 @@ function renderHeader($title = "Sistem Perpustakaan", $activeMenu = "") {
         </div>
         <nav class="sidebar-menu">
             <?php if ($isAnggota): ?>
-                <a href="../../anggota/dashboard.php" class="<?php echo $active == 'dashboard' ? 'active' : ''; ?>">
+                <a href="../anggota/dashboard.php" class="<?php echo $active == 'dashboard' ? 'active' : ''; ?>">
                 <i class="fas fa-home"></i>Dashboard
             </a>
-            <a href="../../anggota/profil.php" class="<?php echo $active == 'profil' ? 'active' : ''; ?>">
+            <a href="../anggota/profil.php" class="<?php echo $active == 'profil' ? 'active' : ''; ?>">
                 <i class="fas fa-user"></i>Profil
             </a>
-            <a href="../../anggota/peminjaman.php" class="<?php echo $active == 'peminjaman' ? 'active' : ''; ?>">
+            <a href="../anggota/peminjaman.php" class="<?php echo $active == 'peminjaman' ? 'active' : ''; ?>">
                 <i class="fas fa-book"></i>Daftar Pinjaman
             </a>
             <?php endif; ?>
@@ -423,11 +426,14 @@ function renderFooter() {
  * @param string $query Query SQL
  * @return mysqli_result|bool Hasil query
  */
-function runQuery($koneksi, $query) {
+
+if (!function_exists('runQuery')) {
+  function runQuery($koneksi, $query) {
     $result = mysqli_query($koneksi, $query);
     if (!$result) {
         die("Query Error: " . mysqli_error($koneksi));
     }
     return $result;
+  }
 }
 ?>
