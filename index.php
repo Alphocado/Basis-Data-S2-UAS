@@ -63,17 +63,17 @@ require_once 'config/koneksi.php';
       <h2>Fitur Utama Perpustakaan</h2>
       <div class="features">
         <div class="feature">
-          <i class="fas fa-users fa-3x" style="color: var(--primary-color); margin-bottom: 15px;"></i>
+          <i class="fas fa-users fa-3x icon-feature"></i>
           <h3>Manajemen Anggota</h3>
           <p>Kelola data anggota perpustakaan dengan mudah dan efisien.</p>
         </div>
         <div class="feature">
-          <i class="fas fa-book-open fa-3x" style="color: var(--primary-color); margin-bottom: 15px;"></i>
+          <i class="fas fa-book-open fa-3x icon-feature"></i>
           <h3>Katalog Buku</h3>
           <p>Telusuri dan kelola koleksi buku secara komprehensif.</p>
         </div>
         <div class="feature">
-          <i class="fas fa-exchange-alt fa-3x" style="color: var(--primary-color); margin-bottom: 15px;"></i>
+          <i class="fas fa-exchange-alt fa-3x icon-feature"></i>
           <h3>Transaksi Peminjaman</h3>
           <p>Proses peminjaman dan pengembalian buku dengan cepat dan akurat.</p>
         </div>

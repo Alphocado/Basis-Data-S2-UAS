@@ -193,6 +193,11 @@ footer {
   box-shadow: 0 -2px 10px var(--shadow-color);
 }
 
+.icon-feature {
+  color: var(--primary-color);
+  margin-bottom: 15px;
+}
+
 /* Responsive Adjustments */
 @media screen and (max-width: 768px) {
   .navbar .container {

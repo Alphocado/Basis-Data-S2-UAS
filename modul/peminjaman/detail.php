@@ -166,40 +166,7 @@ renderHeader("Detail Peminjaman", "peminjaman");
     </table>
 </div>
 
-<style>
-    .card {
-        background-color: var(--white);
-        border-radius: 10px;
-        padding: 20px;
-        margin-bottom: 20px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-
-    .table {
-        width: 100%;
-        margin-bottom: 0;
-    }
-
-    .table th {
-        width: 30%;
-        font-weight: 600;
-        color: var(--text-color);
-    }
-
-    .table td {
-        width: 70%;
-    }
-
-    .mt-4 {
-        margin-top: 1.5rem;
-    }
-
-    .badge {
-        padding: 5px 10px;
-        border-radius: 3px;
-        font-size: 0.8rem;
-    }
-</style>
+<link rel="stylesheet" href="../../assets/css/peminjaman/detail.css">
 
 <?php
 // Render footer

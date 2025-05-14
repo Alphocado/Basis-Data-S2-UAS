@@ -259,17 +259,7 @@ if (isset($_SESSION['error'])) {
     </div>
 </div>
 
-<style>
-    .btn-group {
-        display: flex;
-        gap: 5px;
-    }
-
-    .btn-sm {
-        padding: 5px 10px;
-        font-size: 0.8rem;
-    }
-</style>
+<link rel="stylesheet" href="../../assets/css/peminjaman/laporan_peminjaman.css">
 
 <?php
 // Render footer
