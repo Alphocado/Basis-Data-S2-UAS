@@ -11,33 +11,36 @@ if (!isset($_SESSION['login']) || $_SESSION['level'] != 'anggota') {
 
 // Proses peminjaman buku
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id_buku'])) {
-    $id_buku = mysqli_real_escape_string($koneksi, $_POST['id_buku']);
-    $id_anggota = $_SESSION['id'];
-    $tanggal_pinjam = date('Y-m-d');
-    $tanggal_kembali = date('Y-m-d', strtotime('+7 days')); // Contoh: 7 hari peminjaman
+  $id_buku = mysqli_real_escape_string($koneksi, $_POST['id_buku']);
+  $id_anggota = $_SESSION['id'];
+  $tanggal_pinjam = date('Y-m-d');
+  $tanggal_kembali = date('Y-m-d', strtotime('+7 days'));
 
-    // Cek apakah buku sudah ada yang dipinjam
-    $cek_pinjam = "SELECT * FROM peminjaman 
-                   WHERE id_buku = '$id_buku' 
-                   AND (status = 'Dipinjam' OR status = 'Menunggu Persetujuan')";
-    $result_cek = mysqli_query($koneksi, $cek_pinjam);
+  $cek_pinjam = "SELECT * FROM peminjaman 
+                 WHERE id_buku = '$id_buku' 
+                 AND (status = 'Dipinjam' OR status = 'Menunggu Persetujuan')";
+  $result_cek = mysqli_query($koneksi, $cek_pinjam);
 
-    if (mysqli_num_rows($result_cek) > 0) {
-        $_SESSION['error'] = "Buku sudah sedang dipinjam atau menunggu persetujuan";
-    } else {
-        // Proses pengajuan peminjaman
-        $query = "INSERT INTO peminjaman 
-                  (id_anggota, id_buku, tanggal_pinjam, tanggal_kembali, status) 
-                  VALUES 
-                  ('$id_anggota', '$id_buku', '$tanggal_pinjam', '$tanggal_kembali', 'Menunggu Persetujuan')";
+  if (mysqli_num_rows($result_cek) > 0) {
+      $_SESSION['error'] = "Buku sudah sedang dipinjam atau menunggu persetujuan";
+  } else {
+      $query = "INSERT INTO peminjaman 
+                (id_anggota, id_buku, tanggal_pinjam, tanggal_kembali, status) 
+                VALUES 
+                ('$id_anggota', '$id_buku', '$tanggal_pinjam', '$tanggal_kembali', 'Menunggu Persetujuan')";
 
-        if (mysqli_query($koneksi, $query)) {
-            $_SESSION['success'] = "Pengajuan peminjaman buku berhasil. Menunggu persetujuan admin.";
-        } else {
-            $_SESSION['error'] = "Gagal mengajukan peminjaman: " . mysqli_error($koneksi);
-        }
-    }
+      if (mysqli_query($koneksi, $query)) {
+          $_SESSION['success'] = "Pengajuan peminjaman buku berhasil. Menunggu persetujuan admin.";
+      } else {
+          $_SESSION['error'] = "Gagal mengajukan peminjaman: " . mysqli_error($koneksi);
+      }
+  }
+
+  // Setelah proses selesai, arahkan ke halaman peminjaman.php
+  header("Location: peminjaman.php");
+  exit();
 }
+
 
 // Pencarian dan filter
 $search = isset($_GET['search']) ? mysqli_real_escape_string($koneksi, $_GET['search']) : '';
