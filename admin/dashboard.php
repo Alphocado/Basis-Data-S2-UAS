@@ -202,7 +202,7 @@ $total_pengembalian = mysqli_fetch_assoc($result_pengembalian)['total_pengembali
             <h1>Perpustakaan</h1>
         </div>
         <nav class="sidebar-menu">
-            <a href="admin/dashboard.php" class="active">
+            <a href="dashboard.php" class="active">
                 <i class="fas fa-home"></i>Dashboard
             </a>
             <a href="../modul/anggota/daftar.php">
