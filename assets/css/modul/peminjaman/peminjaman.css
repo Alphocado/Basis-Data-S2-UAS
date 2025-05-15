@@ -1,0 +1,29 @@
+.filter-form {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.select-status {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.btn-filter {
+  padding: 10px 15px;
+}
+
+.row-terlambat {
+  background-color: #ffeeee;
+}
+
+.pagination {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.btn-prev {
+  margin-right: 10px;
+}

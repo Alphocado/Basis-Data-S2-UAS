@@ -24,9 +24,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             p.id_buku, 
                             p.tanggal_kembali AS tanggal_kembali_rencana,
                             b.judul AS judul_buku
-                         FROM tabel_peminjaman p
-                         JOIN tabel_buku b ON p.id_buku = b.id_buku
-                         WHERE p.id_peminjaman = '$id_peminjaman'";
+                        FROM tabel_peminjaman p
+                        JOIN tabel_buku b ON p.id_buku = b.id_buku
+                        WHERE p.id_peminjaman = '$id_peminjaman'";
         $result_pinjam = runQuery($koneksi, $query_pinjam);
         $peminjaman = mysqli_fetch_assoc($result_pinjam);
 
@@ -104,10 +104,10 @@ $query_pinjam = "SELECT
                     b.judul AS judul_buku, 
                     p.tanggal_pinjam, 
                     p.tanggal_kembali
-                 FROM tabel_peminjaman p
-                 JOIN tabel_anggota a ON p.id_anggota = a.id_anggota
-                 JOIN tabel_buku b ON p.id_buku = b.id_buku
-                 WHERE p.status = 'Dipinjam'";
+                FROM tabel_peminjaman p
+                JOIN tabel_anggota a ON p.id_anggota = a.id_anggota
+                JOIN tabel_buku b ON p.id_buku = b.id_buku
+                WHERE p.status = 'Dipinjam'";
 $result_pinjam = runQuery($koneksi, $query_pinjam);
 ?>
 
@@ -127,8 +127,8 @@ $result_pinjam = runQuery($koneksi, $query_pinjam);
                     <option value="<?php echo $pinjam['id_peminjaman']; ?>">
                         <?php 
                         echo htmlspecialchars($pinjam['nama_anggota'] . ' - ' . 
-                             $pinjam['judul_buku'] . ' (Pinjam: ' . 
-                             $pinjam['tanggal_pinjam'] . ')'); 
+                            $pinjam['judul_buku'] . ' (Pinjam: ' . 
+                            $pinjam['tanggal_pinjam'] . ')'); 
                         ?>
                     </option>
                 <?php endwhile; ?>

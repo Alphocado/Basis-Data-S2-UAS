@@ -110,14 +110,14 @@ $total_page = ceil($total_data / $limit);
 
 // Query ambil data peminjaman
 $query = "SELECT p.*, a.username as nama_anggota, a.no_hp, b.judul, b.isbn, 
-                 DATE(p.tanggal_pinjam) as tgl_pinjam, 
-                 DATE(p.tanggal_kembali) as tgl_kembali
+                DATE(p.tanggal_pinjam) as tgl_pinjam, 
+                DATE(p.tanggal_kembali) as tgl_kembali
           FROM peminjaman p
           JOIN anggota a ON p.id_anggota = a.id_anggota
           JOIN buku b ON p.id_buku = b.id_buku 
           WHERE (a.username LIKE '%$search%' OR 
-                 b.judul LIKE '%$search%' OR 
-                 a.no_hp LIKE '%$search%')";
+                b.judul LIKE '%$search%' OR 
+                a.no_hp LIKE '%$search%')";
 
 // Filter status
 if (!empty($filter_status)) {
@@ -132,6 +132,8 @@ $result = mysqli_query($koneksi, $query);
 // Render header
 renderHeader("Laporan Peminjaman", "peminjaman");
 ?>
+
+<link rel="stylesheet" href="../../assets/css/modul/peminjaman/laporan_peminjaman.css">
 
 <div class="page-header">
     <h1>Laporan Peminjaman Buku</h1>
@@ -156,18 +158,18 @@ if (isset($_SESSION['error'])) {
 
 <div class="card">
     <!-- Filter dan Pencarian -->
-    <form method="get" class="search-form" style="margin-bottom: 20px; display: flex; gap: 10px;">
-        <div style="flex-grow: 1;">
+    <form method="get" class="search-form" class="search-container">
+        <div class="search-wrapper">
             <input 
                 type="text" 
                 name="search" 
                 placeholder="Cari username, judul buku, atau no HP..." 
                 value="<?php echo htmlspecialchars($search); ?>"
-                style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;"
+                class="search-input"
             >
         </div>
         <div>
-            <select name="status" style="padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+            <select name="status" class="status-filter">
                 <option value="">Semua Status</option>
                 <option value="Menunggu Persetujuan" <?php echo $filter_status == 'Menunggu Persetujuan' ? 'selected' : ''; ?>>Menunggu Persetujuan</option>
                 <option value="Dipinjam" <?php echo $filter_status == 'Dipinjam' ? 'selected' : ''; ?>>Dipinjam</option>
@@ -176,7 +178,7 @@ if (isset($_SESSION['error'])) {
             </select>
         </div>
         <div>
-            <button type="submit" class="btn" style="padding: 10px 15px;">
+            <button type="submit" class="btn search-button">
                 <i class="fas fa-search"></i> Cari
             </button>
         </div>
@@ -222,7 +224,7 @@ if (isset($_SESSION['error'])) {
                         $tgl_sekarang = new DateTime(date('Y-m-d'));
                         $is_terlambat = ($peminjaman['status'] == 'Dipinjam' && $tgl_sekarang > $tgl_kembali);
                 ?>
-                    <tr <?php echo $is_terlambat ? 'style="background-color: #ffeeee;"' : ''; ?>>
+                    <tr <?php echo $is_terlambat ? 'class="row-terlambat"' : ''; ?>>
                         <td><?php echo $no++; ?></td>
                         <td><?php echo htmlspecialchars($peminjaman['nama_anggota']); ?></td>
                         <td><?php echo htmlspecialchars($peminjaman['no_hp']); ?></td>
@@ -246,13 +248,13 @@ if (isset($_SESSION['error'])) {
                         <td>
                             <?php if ($peminjaman['status'] == 'Menunggu Persetujuan'): ?>
                                 <div class="btn-group">
-                                    <form method="POST" action="" style="display: inline;">
+                                    <form method="POST" action="" class="form-inline">
                                         <input type="hidden" name="id_peminjaman" value="<?php echo $peminjaman['id_peminjaman']; ?>">
                                         <button type="submit" name="action" value="terima" class="btn btn-success btn-sm" onclick="return confirm('Setujui peminjaman buku ini?');">
                                             <i class="fas fa-check"></i> Terima
                                         </button>
                                     </form>
-                                    <form method="POST" action="" style="display: inline;">
+                                    <form method="POST" action="" class="form-inline">
                                         <input type="hidden" name="id_peminjaman" value="<?php echo $peminjaman['id_peminjaman']; ?>">
                                         <button type="submit" name="action" value="tolak" class="btn btn-danger btn-sm" onclick="return confirm('Tolak peminjaman buku ini?');">
                                             <i class="fas fa-times"></i> Tolak
@@ -260,7 +262,7 @@ if (isset($_SESSION['error'])) {
                                     </form>
                                 </div>
                             <?php elseif ($peminjaman['status'] == 'Dipinjam'): ?>
-                                <form method="POST" action="" style="display: inline;">
+                                <form method="POST" action="" class="form-inline">
                                     <input type="hidden" name="id_peminjaman" value="<?php echo $peminjaman['id_peminjaman']; ?>">
                                     <button type="submit" name="action" value="kembalikan" class="btn btn-warning btn-sm" onclick="return confirm('Konfirmasi pengembalian buku?');">
                                         <i class="fas fa-undo"></i> Kembalikan
@@ -286,9 +288,9 @@ if (isset($_SESSION['error'])) {
     </div>
 
     <!-- Pagination -->
-    <div class="pagination" style="margin-top: 20px; display: flex; justify-content: center;">
+    <div class="pagination" class="pagination-container">
         <?php if($page > 1): ?>
-            <a href="?page=<?php echo $page-1; ?>&search=<?php echo urlencode($search); ?>&status=<?php echo urlencode($filter_status); ?>" class="btn" style="margin-right: 10px;">
+            <a href="?page=<?php echo $page-1; ?>&search=<?php echo urlencode($search); ?>&status=<?php echo urlencode($filter_status); ?>" class="btn pagination-prev">
                 <i class="fas fa-chevron-left"></i> Sebelumnya
             </a>
         <?php endif; ?>
@@ -301,7 +303,6 @@ if (isset($_SESSION['error'])) {
     </div>
 </div>
 
-<link rel="stylesheet" href="../../assets/css/peminjaman/laporan_peminjaman.css">
 
 <?php
 // Render footer

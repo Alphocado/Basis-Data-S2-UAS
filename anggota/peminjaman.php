@@ -64,6 +64,8 @@
   renderHeader("Daftar Pinjaman", "peminjaman");
 ?>
 
+<link rel="stylesheet" href="../assets/css/anggota/peminjaman.css">
+
 <div class="page-header">
   <h1>Daftar Pinjaman Buku</h1>
   <div>
@@ -87,18 +89,17 @@
 
 <div class="card">
   <!-- Filter dan Pencarian -->
-  <form method="get" class="search-form" style="margin-bottom: 20px; display: flex; gap: 10px;">
+  <form method="get" class="search-form search-container">
     <div style="flex-grow: 1;">
       <input 
         type="text" 
         name="search" 
         placeholder="Cari buku (judul atau ISBN)..." 
         value="<?php echo htmlspecialchars($search); ?>"
-        style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;"
-      >
+        class="search-input">
     </div>
     <div>
-      <select name="status" style="padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+      <select name="status" class="status-filter">
         <option value="">Semua Status</option>
         <option value="Menunggu Persetujuan" <?php echo $filter_status == 'Menunggu Persetujuan' ? 'selected' : ''; ?>>Menunggu Persetujuan</option>
         <option value="Dipinjam" <?php echo $filter_status == 'Dipinjam' ? 'selected' : ''; ?>>Dipinjam</option>
@@ -107,7 +108,7 @@
       </select>
     </div>
     <div>
-      <button type="submit" class="btn" style="padding: 10px 15px;">
+      <button type="submit" class="btn search-button">
         <i class="fas fa-search"></i> Cari
       </button>
     </div>
@@ -151,7 +152,7 @@
             $tgl_sekarang = new DateTime(date('Y-m-d'));
             $is_terlambat = ($peminjaman['status'] == 'Dipinjam' && $tgl_sekarang > $tgl_kembali);
         ?>
-          <tr <?php echo $is_terlambat ? 'style="background-color: #ffeeee;"' : ''; ?>>
+          <tr class="<?php echo $is_terlambat ? 'terlambat-row' : ''; ?>">
             <td><?php echo $no++; ?></td>
             <td><?php echo htmlspecialchars($peminjaman['judul']); ?></td>
             <td><?php echo htmlspecialchars($peminjaman['isbn']); ?></td>
@@ -196,7 +197,7 @@
   </div>
 
   <!-- Pagination -->
-  <div class="pagination" style="margin-top: 20px; display: flex; justify-content: center;">
+  <div class="pagination pagination-wrapper">
     <?php if($page > 1): ?>
       <a href="?page=<?php echo $page-1; ?>&search=<?php echo urlencode($search); ?>&status=<?php echo urlencode($filter_status); ?>" class="btn" style="margin-right: 10px;">
         <i class="fas fa-chevron-left"></i> Sebelumnya

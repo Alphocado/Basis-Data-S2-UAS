@@ -1,0 +1,30 @@
+.search-form {
+  margin-bottom: 20px;
+  display: flex;
+}
+
+.search-input {
+  flex-grow: 1;
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.btn-search {
+  padding: 10px 15px;
+}
+
+.btn-edit {
+  margin-right: 5px;
+}
+
+.pagination-container {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.pagination-prev {
+  margin-right: 10px;
+}
