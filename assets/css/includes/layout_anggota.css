@@ -226,6 +226,10 @@ table tbody tr:hover {
   color: var(--white);
 }
 
+.bg-primary {
+  background-color: var(--primary-color);
+}
+
 .bg-success {
   background-color: var(--secondary-color);
 }
