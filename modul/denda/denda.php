@@ -9,9 +9,26 @@ if (!isset($_SESSION['login']) || $_SESSION['level'] != 'admin') {
     redirect('../../login.php');
 }
 
+// Tangani aksi pelunasan denda
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['bayar_denda'])) {
+    $id_denda = intval($_POST['bayar_denda']);
+    $today    = date('Y-m-d');
+    $upd      = "
+        UPDATE denda
+        SET status_pembayaran = 'Lunas',
+            tanggal_bayar      = '$today'
+        WHERE id_denda = $id_denda
+    ";
+    if (mysqli_query($koneksi, $upd)) {
+        $_SESSION['success'] = "Denda #$id_denda berhasil dilunasi.";
+    } else {
+        $_SESSION['error'] = "Gagal melunasi denda: " . mysqli_error($koneksi);
+    }
+}
+
 // Proses pencarian
-$search = isset($_GET['search']) 
-    ? mysqli_real_escape_string($koneksi, $_GET['search']) 
+$search = isset($_GET['search'])
+    ? mysqli_real_escape_string($koneksi, $_GET['search'])
     : '';
 
 // Pagination
@@ -19,20 +36,19 @@ $limit = 10;
 $page  = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $start = ($page > 1) ? ($page * $limit) - $limit : 0;
 
-// Hitung total data (tanpa LIMIT)
+// Hitung total data
 $query_count = "
-    SELECT COUNT(*) as total
+    SELECT COUNT(*) AS total
     FROM denda d
-      JOIN pengembalian pg ON d.id_pengembalian = pg.id_pengembalian
-      JOIN peminjaman     p  ON pg.id_peminjaman   = p.id_peminjaman
-      JOIN anggota        a  ON p.id_anggota       = a.id_anggota
+    JOIN pengembalian pg ON d.id_pengembalian = pg.id_pengembalian
+    JOIN peminjaman     p  ON pg.id_peminjaman   = p.id_peminjaman
+    JOIN anggota        a  ON p.id_anggota       = a.id_anggota
     WHERE a.username LIKE '%$search%'
        OR a.no_hp    LIKE '%$search%'
 ";
-$result_count  = mysqli_query($koneksi, $query_count);
-$data_count    = mysqli_fetch_assoc($result_count);
-$total_data    = $data_count['total'];
-$total_page    = ceil($total_data / $limit);
+$result_count = mysqli_query($koneksi, $query_count);
+$total_data   = mysqli_fetch_assoc($result_count)['total'];
+$total_page   = ceil($total_data / $limit);
 
 // Ambil data denda dengan pagination
 $query = "
@@ -46,10 +62,10 @@ $query = "
         d.tanggal_bayar,
         d.status_pembayaran
     FROM denda d
-      JOIN pengembalian pg ON d.id_pengembalian = pg.id_pengembalian
-      JOIN peminjaman     p  ON pg.id_peminjaman   = p.id_peminjaman
-      JOIN anggota        a  ON p.id_anggota       = a.id_anggota
-      JOIN buku           b  ON p.id_buku          = b.id_buku
+    JOIN pengembalian pg ON d.id_pengembalian = pg.id_pengembalian
+    JOIN peminjaman     p  ON pg.id_peminjaman   = p.id_peminjaman
+    JOIN anggota        a  ON p.id_anggota       = a.id_anggota
+    JOIN buku           b  ON p.id_buku          = b.id_buku
     WHERE a.username LIKE '%$search%'
        OR a.no_hp    LIKE '%$search%'
     ORDER BY d.tanggal_bayar DESC
@@ -110,6 +126,7 @@ if (isset($_SESSION['error'])) {
                     <th>Jumlah Denda</th>
                     <th>Tanggal Bayar</th>
                     <th>Status</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -134,13 +151,30 @@ if (isset($_SESSION['error'])) {
                             <?php echo htmlspecialchars($row['status_pembayaran']); ?>
                         </span>
                     </td>
+                    <td>
+                        <?php if ($row['status_pembayaran'] === 'Belum'): ?>
+                            <form method="post" style="display:inline">
+                                <button 
+                                  type="submit" 
+                                  name="bayar_denda" 
+                                  value="<?php echo $row['id_denda']; ?>" 
+                                  class="btn btn-sm btn-success"
+                                  onclick="return confirm('Tandai denda ini lunas?')"
+                                >
+                                  Bayar
+                                </button>
+                            </form>
+                        <?php else: ?>
+                            <span class="text-muted">—</span>
+                        <?php endif; ?>
+                    </td>
                 </tr>
                 <?php 
                     endwhile;
                 else: 
                 ?>
                 <tr>
-                    <td colspan="8" class="text-center">Tidak ada data denda</td>
+                    <td colspan="9" class="text-center">Tidak ada data denda</td>
                 </tr>
                 <?php endif; ?>
             </tbody>
