@@ -204,16 +204,16 @@ if (isset($_SESSION['error'])) {
                 if (mysqli_num_rows($result) > 0) :
                     while ($peminjaman = mysqli_fetch_assoc($result)) : 
                         // Tentukan warna status
-                        $status_class = 'badge-warning';
+                        $status_class = 'bg-warning';
                         switch ($peminjaman['status']) {
                             case 'Dipinjam':
-                                $status_class = 'badge-primary';
+                                $status_class = 'bg-primary';
                                 break;
                             case 'Dikembalikan':
-                                $status_class = 'badge-success';
+                                $status_class = 'bg-success';
                                 break;
                             case 'Ditolak':
-                                $status_class = 'badge-danger';
+                                $status_class = 'bg-danger';
                                 break;
                         }
 

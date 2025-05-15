@@ -135,8 +135,8 @@ if (isset($_SESSION['error'])) {
                 if (mysqli_num_rows($result) > 0):
                     while ($row = mysqli_fetch_assoc($result)):
                         $cls = $row['status_pembayaran'] === 'Belum' 
-                               ? 'badge-danger' 
-                               : 'badge-success';
+                              ? 'bg-danger' 
+                              : 'bg-success';
                 ?>
                 <tr>
                     <td><?php echo $no++; ?></td>

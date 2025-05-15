@@ -1,7 +1,7 @@
 <?php
-// index.php - Halaman Beranda
-session_start();
-require_once 'config/koneksi.php';
+  // index.php - Halaman Beranda
+  session_start();
+  require_once 'config/koneksi.php';
 ?>
 <!DOCTYPE html>
 <html lang="id">

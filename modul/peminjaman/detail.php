@@ -50,16 +50,16 @@ $result_denda = mysqli_query($koneksi, $query_denda);
 $denda = mysqli_fetch_assoc($result_denda);
 
 // Tentukan warna status
-$status_class = 'badge-warning';
+$status_class = 'bg-warning';
 switch ($peminjaman['status']) {
     case 'Dipinjam':
-        $status_class = 'badge-primary';
+        $status_class = 'bg-primary';
         break;
     case 'Dikembalikan':
-        $status_class = 'badge-success';
+        $status_class = 'bg-success';
         break;
     case 'Ditolak':
-        $status_class = 'badge-danger';
+        $status_class = 'bg-danger';
         break;
 }
 
@@ -157,7 +157,7 @@ renderHeader("Detail Peminjaman", "peminjaman");
                 <th>Denda</th>
                 <td>
                     Rp <?php echo number_format($denda['nominal_denda'], 0, ',', '.'); ?>
-                    <span class="badge <?php echo $denda['status_pembayaran'] == 'Lunas' ? 'badge-success' : 'badge-danger'; ?>">
+                    <span class="badge <?php echo $denda['status_pembayaran'] == 'Lunas' ? 'bg-success' : 'bg-danger'; ?>">
                         <?php echo htmlspecialchars($denda['status_pembayaran']); ?>
                     </span>
                 </td>
