@@ -215,7 +215,7 @@ $total_pengembalian = mysqli_fetch_assoc($result_pengembalian)['total_pengembali
                 <i class="fas fa-exchange-alt"></i>Peminjaman
             </a>
             <a href="../modul/denda/denda.php">
-                <i class="fas fa-exchange-alt"></i>Denda
+                <i class="fas fa-money-bill"></i>Denda
             </a>
             <a href="../logout.php">
                 <i class="fas fa-sign-out-alt"></i>Logout

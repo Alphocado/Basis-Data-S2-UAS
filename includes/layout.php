@@ -288,7 +288,7 @@ table tbody tr:hover {
           <i class="fas fa-exchange-alt"></i>Peminjaman
         </a>
         <a href="../../modul/denda/denda.php" class="<?php echo ($activeMenu == 'denda') ? 'active' : ''; ?>">
-          <i class="fas fa-exchange"></i>Denda
+          <i class="fas fa-money-bill"></i>Denda
         </a>
       <?php else: ?>
         <a href="dashboard.php" class="<?php echo ($activeMenu == 'dashboard') ? 'active' : ''; ?>">
