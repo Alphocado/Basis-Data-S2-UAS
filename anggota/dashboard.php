@@ -52,7 +52,7 @@
   renderHeader("Dashboard Anggota", "dashboard");
 ?>
 
-<link rel="stylesheet" href="../assets/css/anggota/dashboard.css">
+<link rel="stylesheet" href="../assets/css/anggota/anggota.css">
 
 
 <div class="dashboard">

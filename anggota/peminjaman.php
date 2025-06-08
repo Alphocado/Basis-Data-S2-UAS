@@ -64,7 +64,7 @@
   renderHeader("Daftar Pinjaman", "peminjaman");
 ?>
 
-<link rel="stylesheet" href="../assets/css/anggota/peminjaman.css">
+<link rel="stylesheet" href="../assets/css/anggota/anggota.css">
 
 <div class="page-header">
   <h1>Daftar Pinjaman Buku</h1>
