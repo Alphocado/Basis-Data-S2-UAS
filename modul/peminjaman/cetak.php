@@ -1,3 +1,4 @@
+
 <?php
 // modul/peminjaman/cetak.php
 session_start();
@@ -34,7 +35,7 @@ $result = mysqli_query($koneksi, $query);
 <head>
   <meta charset="UTF-8">
   <title>Laporan Peminjaman Perpustakaan</title>
-  <link rel="stylesheet" href="../../assets/css/modul/peminjaman/cetak.css">
+  <link rel="stylesheet" href="../../assets/css/print.css">
 </head>
 <body>
   <div class="header">
