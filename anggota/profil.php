@@ -95,6 +95,7 @@ if (isset($_SESSION['success'])) {
 }
 ?>
 
+<link rel="stylesheet" href="../assets/css/anggota/profil.css">
 <div class="card">
   <form method="POST" action="">
     <div class="row">
@@ -133,7 +134,7 @@ if (isset($_SESSION['success'])) {
         </div>
       </div>
 
-      <div class="col-md-6">
+      <div class="col-md-6"> 
         <h3>Informasi Tambahan</h3>
         <div class="form-group">
           <label>Alamat</label>
@@ -176,7 +177,6 @@ if (isset($_SESSION['success'])) {
   </form>
 </div>
 
-<link rel="stylesheet" href="../assets/css/anggota/profil.css">
 
 
 <?php

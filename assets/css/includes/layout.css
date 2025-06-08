@@ -112,7 +112,7 @@ body {
   border-radius: 10px;
   padding: 20px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0 3.5s ease;
 }
 
 .dashboard-card:hover {
@@ -151,7 +151,7 @@ body {
   color: var(--primary-color);
 }
 
-/* Card (Form/Page) */
+/* Card (Generic) */
 .card {
   background-color: var(--white);
   border-radius: 10px;
@@ -160,7 +160,7 @@ body {
   margin-bottom: 20px;
 }
 
-/* Form */
+/* Form Elements */
 .form-group {
   margin-bottom: 15px;
 }
@@ -213,6 +213,15 @@ table tbody tr:hover {
   background-color: #f1f3f5;
 }
 
+/* Recent Loans Container */
+.recent-loans {
+  background-color: var(--white);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 40px;
+}
+
 /* Badges */
 .badge {
   display: inline-block;
@@ -222,24 +231,36 @@ table tbody tr:hover {
   text-align: center;
   white-space: nowrap;
   vertical-align: baseline;
-  border-radius: 4px;
+  border-radius: 0.25rem;
   color: var(--white);
 }
 
+/* Utility Backgrounds */
 .bg-primary {
   background-color: var(--primary-color);
 }
-
 .bg-success {
   background-color: var(--secondary-color);
 }
-
 .bg-warning {
   background-color: var(--warning-color);
 }
-
 .bg-danger {
   background-color: var(--danger-color);
+}
+
+/* Legacy Badge Classes */
+.badge-warning {
+  background-color: #ffc107;
+  color: #212529;
+}
+.badge-success {
+  background-color: #28a745;
+  color: #ffffff;
+}
+.badge-danger {
+  background-color: #dc3545;
+  color: #ffffff;
 }
 
 /* Alerts */
@@ -254,13 +275,11 @@ table tbody tr:hover {
   color: #155724;
   border: 1px solid #c3e6cb;
 }
-
 .alert-danger {
   background-color: #f8d7da;
   color: #721c24;
   border: 1px solid #f5c6cb;
 }
-
 .alert-warning {
   background-color: #fff3cd;
   color: #856404;
@@ -284,50 +303,46 @@ table tbody tr:hover {
 .btn:hover {
   background-color: var(--hover-color);
 }
-
 .btn-danger {
   background-color: var(--danger-color);
 }
-
 .btn-danger:hover {
   background-color: #c0392b;
 }
 
-/* Grid System */
-.row {
+/* Quick Actions */
+.quick-actions {
+  margin-bottom: 30px;
   display: flex;
-  flex-wrap: wrap;
-  margin: 0 -10px;
+  gap: 10px;
+}
+.quick-actions .btn {
+  padding: 10px 15px;
+  font-size: 1rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-[class^="col-md-"] {
-  padding: 0 10px;
-  margin-bottom: 20px;
+/* Utility Classes */
+.text-center {
+  text-align: center;
 }
-
-.col-md-3 {
-  flex: 0 0 25%;
-  max-width: 25%;
+.text-right {
+  text-align: right;
 }
-
-.col-md-4 {
-  flex: 0 0 33.3333%;
-  max-width: 33.3333%;
+.text-danger {
+  color: var(--danger-color);
 }
-
-.col-md-6 {
-  flex: 0 0 50%;
-  max-width: 50%;
+.text-success {
+  color: var(--secondary-color);
 }
-
-.col-md-8 {
-  flex: 0 0 66.6667%;
-  max-width: 66.6667%;
+.text-warning {
+  color: var(--warning-color);
 }
-
-.col-md-12 {
-  flex: 0 0 100%;
-  max-width: 100%;
+.text-muted {
+  color: #6c757d;
 }
 
 /* Pagination */
@@ -335,7 +350,6 @@ table tbody tr:hover {
   display: flex;
   list-style: none;
 }
-
 .pagination a {
   color: var(--white);
   text-decoration: none;
@@ -344,71 +358,38 @@ table tbody tr:hover {
   margin: 0 4px;
   transition: background-color 0.3s ease;
 }
-
 .pagination a:hover {
   background-color: var(--hover-color);
 }
-
 .pagination a.active {
   background-color: var(--primary-color);
   color: var(--white);
   border: 1px solid var(--primary-color);
 }
 
-/* Utilities */
-.text-center {
-  text-align: center;
-}
-
-.text-right {
-  text-align: right;
-}
-
-.text-danger {
-  color: var(--danger-color);
-}
-
-.text-success {
-  color: var(--secondary-color);
-}
-
-.text-warning {
-  color: var(--warning-color);
-}
-
-.text-muted {
-  color: #6c757d;
-}
-
-/* Responsive */
+/* Responsive Adjustments */
 @media screen and (max-width: 768px) {
   .sidebar {
     width: 0;
     padding: 0;
   }
-
   .sidebar.active {
     width: 250px;
   }
-
   .main-content {
     margin-left: 0;
     width: 100%;
   }
-
   .dashboard {
     grid-template-columns: 1fr;
   }
-
   .page-header {
     flex-direction: column;
     align-items: flex-start;
   }
-
   .page-header div {
     margin-top: 10px;
   }
-
   .col-md-3,
   .col-md-4,
   .col-md-6,

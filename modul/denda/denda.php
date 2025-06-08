@@ -102,7 +102,7 @@ if (isset($_SESSION['error'])) {
 
 <div class="card">
   <!-- Form Pencarian -->
-  <form method="get" class="search-form" class="search-form custom-search-form">
+  <form method="get" class="search-form custom-search-form">
     <input 
       type="text" 
       name="search" 

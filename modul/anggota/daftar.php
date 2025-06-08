@@ -39,6 +39,8 @@
   renderHeader("Daftar Anggota", "anggota");
 ?>
 
+<link rel="stylesheet" href="../../assets/css/modul/anggota/daftar.css">
+
 <div class="page-header">
   <h1>Daftar Anggota</h1>
   <div>
