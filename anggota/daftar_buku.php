@@ -84,7 +84,7 @@
   renderHeader("Daftar Buku Pinjam", "peminjaman");
 ?>
 
-<link rel="stylesheet" href="../assets/css/anggota/anggota.css">
+<link rel="stylesheet" href="../assets/css/anggota.css">
 
 
 <div class="page-header">
@@ -112,7 +112,7 @@ else if (isset($_SESSION['error'])) {
         name="search" 
         placeholder="Cari buku (judul, pengarang, ISBN)..." 
         value="<?php echo htmlspecialchars($search); ?>"
-        class="input-search"
+        class="search-input"
         >
     </div>
     <div>
@@ -124,7 +124,7 @@ else if (isset($_SESSION['error'])) {
       </select>
     </div>
     <div>
-      <button type="submit" class="btn" class="btn btn-cari">
+      <button type="submit" class="btn" class="btn btn-search">
         <i class="fas fa-search"></i> Cari
       </button>
     </div>

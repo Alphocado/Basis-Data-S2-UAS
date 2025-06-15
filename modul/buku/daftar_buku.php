@@ -41,7 +41,7 @@
   renderHeader("Daftar Buku", "buku");
 ?>
 
-<link rel="stylesheet" href="../../assets/css/modul/buku/daftar_buku.css">
+<link rel="stylesheet" href="../../assets/css/buku.css">
 
 <div class="page-header">
   <h1>Daftar Buku</h1>

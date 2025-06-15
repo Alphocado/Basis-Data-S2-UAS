@@ -84,7 +84,7 @@
   renderHeader("Edit Anggota", "anggota");
 ?>
 
-<link rel="stylesheet" href="../../assets/css/modul/anggota/edit.css">
+<link rel="stylesheet" href="../../assets/css/anggota.css">
 
 <div class="page-header">
   <h1>Edit Anggota</h1>
@@ -188,7 +188,7 @@
     </div>
 
     <div>
-      <button type="submit" class="btn" style="width: 100%; padding: 15px;">
+      <button type="submit" class="btn btn-full">
         Update Anggota
       </button>
     </div>

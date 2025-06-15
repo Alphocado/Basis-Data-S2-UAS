@@ -80,7 +80,7 @@
   renderHeader("Edit Buku", "buku");
 ?>
 
-<link rel="stylesheet" href="../../assets/css/modul/buku/edit.css">
+<link rel="stylesheet" href="../../assets/css/buku.css">
 
 <div class="page-header">
   <h1>Edit Buku</h1>

@@ -1,0 +1,102 @@
+/* ===== File Gabungan ===== */
+
+/* === Button Groups & Sizing === */
+.btn-group {
+  display: flex;
+  gap: 5px;
+}
+
+.btn-sm {
+  padding: 5px 10px;
+  font-size: 0.8rem;
+}
+
+/* === Search / Filter Form === */
+.search-container,
+.filter-form {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.search-wrapper {
+  flex-grow: 1;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.status-filter,
+.select-status {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.btn-filter,
+.btn-search {
+  padding: 10px 15px;
+}
+
+/* Inline form helper */
+.form-inline {
+  display: inline;
+}
+
+/* === Highlight Late Rows === */
+/* selector sama di kedua file, style identik */
+.row-terlambat {
+  background-color: #ffeeee;
+}
+
+/* === Pagination Controls === */
+.pagination,
+.pagination-container {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.btn-prev,
+.pagination-prev {
+  margin-right: 10px;
+}
+
+/* === Card & Table Layout === */
+.card {
+  background-color: var(--white);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.table {
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.table th {
+  width: 30%;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.table td {
+  width: 70%;
+}
+
+/* === Utilities & Badges === */
+.mt-4 {
+  margin-top: 1.5rem;
+}
+
+.badge {
+  padding: 5px 10px;
+  border-radius: 3px;
+  font-size: 0.8rem;
+}

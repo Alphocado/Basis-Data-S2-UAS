@@ -60,7 +60,7 @@
   renderHeader("Tambah Buku", "buku");
 ?>
 
-<link rel="stylesheet" href="../../assets/css/modul/buku/tambah.css">
+<link rel="stylesheet" href="../../assets/css/buku.css">
 
 <div class="page-header">
   <h1>Tambah Buku Baru</h1>

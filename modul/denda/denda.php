@@ -77,7 +77,7 @@
   renderHeader("Laporan Denda", "denda");
 ?>
 
-<link rel="stylesheet" href="../../assets/css/modul/denda/denda.css">
+<link rel="stylesheet" href="../../assets/css/denda.css">
 
 <div class="page-header">
   <h1>Laporan Denda</h1>
@@ -110,7 +110,7 @@ if (isset($_SESSION['error'])) {
       value="<?php echo htmlspecialchars($search); ?>"
       class="form-control search-input"
     >
-    <button type="submit" class="btn search-button">
+    <button type="submit" class="btn btn-search">
       <i class="fas fa-search"></i> Cari
     </button>
   </form>

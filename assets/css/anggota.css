@@ -6,7 +6,7 @@
   display: flex;
   background-color: var(--white);
   border-radius: 10px;
-  padding: 20px;
+  padding: 19px;
   margin-bottom: 20px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
@@ -57,7 +57,7 @@
   gap: 10px;
 }
 
-.input-search {
+.search-input {
   width: 100%;
   padding: 10px;
   border: 1px solid #ddd;
@@ -70,7 +70,7 @@
   border-radius: 5px;
 }
 
-.btn-cari {
+.btn-search {
   padding: 10px 15px;
 }
 
@@ -122,6 +122,10 @@
   display: flex;
   gap: 10px;
 }
+.search-form {
+  margin-bottom: 20px;
+  display: flex;
+}
 
 .search-input {
   width: 100%;
@@ -136,7 +140,7 @@
   border-radius: 5px;
 }
 
-.search-button {
+.btn-search {
   padding: 10px 15px;
 }
 
@@ -181,4 +185,9 @@
 
 .mt-3 {
   margin-top: 1rem;
+}
+
+.btn-full {
+  width: 100%;
+  padding: 15px;
 }

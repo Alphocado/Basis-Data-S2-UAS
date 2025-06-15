@@ -64,7 +64,7 @@
   renderHeader("Daftar Pinjaman", "peminjaman");
 ?>
 
-<link rel="stylesheet" href="../assets/css/anggota/anggota.css">
+<link rel="stylesheet" href="../assets/css/anggota.css">
 
 <div class="page-header">
   <h1>Daftar Pinjaman Buku</h1>
@@ -108,7 +108,7 @@
       </select>
     </div>
     <div>
-      <button type="submit" class="btn search-button">
+      <button type="submit" class="btn btn-search">
         <i class="fas fa-search"></i> Cari
       </button>
     </div>

@@ -39,12 +39,12 @@
   renderHeader("Daftar Anggota", "anggota");
 ?>
 
-<link rel="stylesheet" href="../../assets/css/modul/anggota/daftar.css">
+<link rel="stylesheet" href="../../assets/css/anggota.css">
 
 <div class="page-header">
   <h1>Daftar Anggota</h1>
   <div>
-    <a href="tambah.php" class="btn">
+    <a href="tambah.php" class="btn btn-primary">
       <i class="fas fa-plus"></i> Tambah Anggota
     </a>
   </div>
@@ -64,17 +64,21 @@ else if (isset($_SESSION['error'])) {
 
 <div class="card">
   <!-- Pencarian -->
-  <form method="get" class="search-form">
-    <input 
+  <form method="get" class="search-form search-container">
+    <div style="flex-grow: 1;">
+      <input 
       type="text" 
       name="search" 
       placeholder="Cari anggota (username, email, no hp)..." 
       value="<?php echo htmlspecialchars($search); ?>"
       class="search-input"
-    >
-    <button type="submit" class="btn btn-search">
-      <i class="fas fa-search"></i>
-    </button>
+      >
+    </div>
+    <div>
+      <button type="submit" class="btn btn-search">
+        <i class="fas fa-search"></i> Cari
+      </button>
+    </div>
   </form>
 
   <!-- Tabel Anggota -->

@@ -67,7 +67,7 @@
   renderHeader("Detail Peminjaman", "peminjaman");
 ?>
 
-<link rel="stylesheet" href="../../assets/css/modul/peminjaman/detail.css">
+<link rel="stylesheet" href="../../assets/css/peminjaman.css">
 
 <div class="page-header">
   <h1>Detail Peminjaman</h1>

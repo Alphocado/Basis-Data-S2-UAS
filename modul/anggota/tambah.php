@@ -58,7 +58,7 @@
   renderHeader("Tambah Anggota", "anggota");
 ?>
 
-<link rel="stylesheet" href="../../assets/css/modul/anggota/tambah.css">
+<link rel="stylesheet" href="../../assets/css/anggota.css">
 
 <div class="page-header">
   <h1>Tambah Anggota Baru</h1>

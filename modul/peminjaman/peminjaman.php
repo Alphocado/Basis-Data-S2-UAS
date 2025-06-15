@@ -58,7 +58,7 @@
   renderHeader("Daftar Peminjaman", "peminjaman");
 ?>
 
-<link rel="stylesheet" href="../../assets/css/modul/peminjaman/peminjaman.css">
+<link rel="stylesheet" href="../../assets/css/peminjaman.css">
 
 <div class="page-header">
   <h1>Daftar Peminjaman Buku</h1>

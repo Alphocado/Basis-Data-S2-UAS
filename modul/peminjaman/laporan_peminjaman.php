@@ -133,7 +133,7 @@ $result = mysqli_query($koneksi, $query);
 renderHeader("Laporan Peminjaman", "peminjaman");
 ?>
 
-<link rel="stylesheet" href="../../assets/css/modul/peminjaman/laporan_peminjaman.css">
+<link rel="stylesheet" href="../../assets/css/peminjaman.css">
 
 <div class="page-header">
   <h1>Laporan Peminjaman Buku</h1>
@@ -178,7 +178,7 @@ if (isset($_SESSION['error'])) {
       </select>
     </div>
     <div>
-      <button type="submit" class="btn search-button">
+      <button type="submit" class="btn btn-search">
         <i class="fas fa-search"></i> Cari
       </button>
     </div>

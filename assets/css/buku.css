@@ -1,0 +1,103 @@
+/* ===== File Gabungan ===== */
+
+/* === Page Header === */
+.page-header h1 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* === Search Form === */
+.custom-search-form {
+  margin-bottom: 20px;
+  display: flex;
+}
+
+.search-input {
+  flex-grow: 1;
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.search-btn {
+  padding: 10px 15px;
+}
+
+.btn-edit {
+  margin-right: 5px;
+}
+
+.btn-edit2x {
+  margin-right: 10px;
+}
+
+.custom-pagination {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+/* === Alerts === */
+/* .error-box dari file pertama, .alert-error dari file kedua */
+.error-box,
+.alert-error {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+/* === Form Layout === */
+/* .form-container, .form-group, .form-label, .form-control, textarea.form-control */
+/* Properti gabungan dari kedua file */
+.form-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold; /* ditambahkan dari file kedua */
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px; /* ditambahkan dari file kedua */
+  box-sizing: border-box; /* ditambahkan dari file kedua */
+}
+
+textarea.form-control {
+  min-height: 150px;
+}
+
+/* === Buttons === */
+.btn-full,
+.form-submit {
+  width: 100%;
+  padding: 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Khusus tombol submit dengan warna */
+.form-submit {
+  background-color: #007bff;
+  border: none;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.form-submit:hover {
+  background-color: #0056b3;
+}
