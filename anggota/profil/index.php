@@ -75,6 +75,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 renderHeader("Profil Anggota", "profil");
 ?>
 
+
+<link rel="stylesheet" href="../../assets/css/anggota.css">
+
 <div class="page-header">
   <h1>Profil Anggota</h1>
 </div>
