@@ -1,12 +1,12 @@
 <?php
 // anggota/profil.php
 session_start();
-require_once '../config/koneksi.php';
-require_once '../includes/layout_anggota.php';
+require_once '../../config/koneksi.php';
+require_once '../../includes/layout.php';
 
 // Cek apakah sudah login sebagai anggota
 if (!isset($_SESSION['login']) || $_SESSION['level'] != 'anggota') {
-  redirect('../login.php');
+  redirect('../../login.php');
 }
 
 // Ambil ID anggota dari session
@@ -19,7 +19,7 @@ $result_anggota = mysqli_query($koneksi, $query_anggota);
 // Pastikan data anggota ditemukan
 if (!$result_anggota || mysqli_num_rows($result_anggota) == 0) {
   $_SESSION['error'] = "Data anggota tidak ditemukan";
-  redirect('../login.php');
+  redirect('../../login.php');
 }
 
 $anggota = mysqli_fetch_assoc($result_anggota);
@@ -95,7 +95,6 @@ if (isset($_SESSION['success'])) {
 }
 ?>
 
-<link rel="stylesheet" href="../assets/css/anggota/profil.css">
 <div class="card">
   <form method="POST" action="">
     <div class="row">

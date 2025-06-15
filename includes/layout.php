@@ -45,13 +45,13 @@ function renderHeader($title = "Sistem Perpustakaan", $activeMenu = "") {
       <i class="fas fa-money-bill"></i>Denda
     </a>
     <?php else: ?>
-    <a href="dashboard.php" class="<?php echo ($activeMenu == 'dashboard') ? 'active' : ''; ?>">
+    <a href="../dashboard" class="<?php echo ($activeMenu == 'dashboard') ? 'active' : ''; ?>">
       <i class="fas fa-home"></i>Dashboard
     </a>
-    <a href="profil.php" class="<?php echo ($activeMenu == 'profil') ? 'active' : ''; ?>">
+    <a href="../profil" class="<?php echo ($activeMenu == 'profil') ? 'active' : ''; ?>">
       <i class="fas fa-user"></i>Profil
     </a>
-    <a href="peminjaman.php" class="<?php echo ($activeMenu == 'peminjaman') ? 'active' : ''; ?>">
+    <a href="../daftar_pinjaman" class="<?php echo ($activeMenu == 'peminjaman') ? 'active' : ''; ?>">
       <i class="fas fa-book"></i>Daftar Pinjaman
     </a>
     
@@ -71,7 +71,7 @@ function renderFooter() {
 ?>
   </main>
 
-  <script src="../assets/js/includes/layout.js"></script>
+  <script src="../assets/js/layout.js"></script>
 </body>
 </html>
 <?php

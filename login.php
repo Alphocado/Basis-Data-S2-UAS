@@ -71,7 +71,7 @@
       if ($level == 'admin') {
         redirect('admin/dashboard');
       } else {
-        redirect('anggota/dashboard.php');
+        redirect('anggota/dashboard/');
       }
     } else {
       // Login gagal

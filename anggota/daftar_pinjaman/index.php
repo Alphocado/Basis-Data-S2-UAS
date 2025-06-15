@@ -1,12 +1,12 @@
 <?php
   // anggota/peminjaman.php
   session_start();
-  require_once '../config/koneksi.php';
-  require_once '../includes/layout_anggota.php';
+  require_once '../../config/koneksi.php';
+  require_once '../../includes/layout.php';
 
   // Cek apakah sudah login sebagai anggota
   if (!isset($_SESSION['login']) || $_SESSION['level'] != 'anggota') {
-    redirect('../login.php');
+    redirect('../../login.php');
   }
 
   // Ambil ID anggota dari session
@@ -64,7 +64,7 @@
   renderHeader("Daftar Pinjaman", "peminjaman");
 ?>
 
-<link rel="stylesheet" href="../assets/css/anggota.css">
+<link rel="stylesheet" href="../../assets/css/anggota.css">
 
 <div class="page-header">
   <h1>Daftar Pinjaman Buku</h1>

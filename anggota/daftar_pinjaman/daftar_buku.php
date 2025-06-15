@@ -1,8 +1,8 @@
 <?php
   // modul/peminjaman/daftar_buku.php
   session_start();
-  require_once '../config/koneksi.php';
-  require_once '../includes/layout_anggota.php';
+  require_once '../../config/koneksi.php';
+  require_once '../../includes/layout.php';
 
   // Cek apakah sudah login sebagai anggota
   if (!isset($_SESSION['login']) || $_SESSION['level'] != 'anggota') {
@@ -84,7 +84,7 @@
   renderHeader("Daftar Buku Pinjam", "peminjaman");
 ?>
 
-<link rel="stylesheet" href="../assets/css/anggota.css">
+<link rel="stylesheet" href="../../assets/css/anggota.css">
 
 
 <div class="page-header">
