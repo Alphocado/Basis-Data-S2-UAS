@@ -25,6 +25,6 @@
   }
 
   // Redirect kembali
-  header('Location: ../../admin/dashboard.php?page=pengembalian');
+  header('Location: ../../dashboard?page=pengembalian');
   exit;
 ?>

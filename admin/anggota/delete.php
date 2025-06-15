@@ -1,5 +1,5 @@
 <?php
-  // modul/anggota/hapus.php
+  // modul/anggota/delete.php
   session_start();
   require_once '../../config/koneksi.php';
 

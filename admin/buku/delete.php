@@ -1,5 +1,5 @@
 <?php
-// modul/buku/hapus.php
+// modul/buku/delete.php
 session_start();
 require_once '../../config/koneksi.php';
 

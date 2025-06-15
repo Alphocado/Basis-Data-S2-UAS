@@ -69,7 +69,7 @@
 
       // Redirect sesuai level
       if ($level == 'admin') {
-        redirect('admin/dashboard.php');
+        redirect('admin/dashboard');
       } else {
         redirect('anggota/dashboard.php');
       }

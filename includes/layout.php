@@ -29,19 +29,19 @@ function renderHeader($title = "Sistem Perpustakaan", $activeMenu = "") {
   </div>
   <nav class="sidebar-menu">
     <?php if ($userLevel == 'admin'): ?>
-    <a href="../../admin/dashboard.php" class="<?php echo ($activeMenu == 'dashboard') ? 'active' : ''; ?>">
+    <a href="../../admin/dashboard" class="<?php echo ($activeMenu == 'dashboard') ? 'active' : ''; ?>">
       <i class="fas fa-home"></i>Dashboard
     </a>
-    <a href="../../modul/anggota/daftar.php" class="<?php echo ($activeMenu == 'anggota') ? 'active' : ''; ?>">
+    <a href="../../admin/anggota/" class="<?php echo ($activeMenu == 'anggota') ? 'active' : ''; ?>">
       <i class="fas fa-users"></i>Anggota
     </a>
-    <a href="../../modul/buku/daftar_buku.php" class="<?php echo ($activeMenu == 'buku') ? 'active' : ''; ?>">
+    <a href="../../admin/buku/" class="<?php echo ($activeMenu == 'buku') ? 'active' : ''; ?>">
       <i class="fas fa-book"></i>Buku
     </a>
-    <a href="../../modul/peminjaman/laporan_peminjaman.php" class="<?php echo ($activeMenu == 'peminjaman') ? 'active' : ''; ?>">
+    <a href="../../admin/peminjaman/" class="<?php echo ($activeMenu == 'peminjaman') ? 'active' : ''; ?>">
       <i class="fas fa-exchange-alt"></i>Peminjaman
     </a>
-    <a href="../../modul/denda/denda.php" class="<?php echo ($activeMenu == 'denda') ? 'active' : ''; ?>">
+    <a href="../../admin/denda/" class="<?php echo ($activeMenu == 'denda') ? 'active' : ''; ?>">
       <i class="fas fa-money-bill"></i>Denda
     </a>
     <?php else: ?>

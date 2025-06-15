@@ -1,5 +1,5 @@
 <?php
-  // modul/anggota/daftar.php
+  // modul/buku/daftar_buku.php
   session_start();
   require_once '../../config/koneksi.php';
   require_once '../../includes/layout.php';
@@ -17,39 +17,40 @@
   $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
   $start = ($page > 1) ? ($page * $limit) - $limit : 0;
 
-  // Query dengan pencarian
-  $query_count = "SELECT COUNT(*) as total FROM anggota 
-          WHERE username LIKE '%$search%' OR 
-              email LIKE '%$search%' OR 
-              no_hp LIKE '%$search%'";
+  // Query untuk menghitung total data
+  $query_count = "SELECT COUNT(*) as total FROM buku 
+          WHERE judul LIKE '%$search%' OR 
+              penerbit LIKE '%$search%' OR 
+              pengarang LIKE '%$search%' OR 
+              isbn LIKE '%$search%'";
   $result_count = mysqli_query($koneksi, $query_count);
   $data_count = mysqli_fetch_assoc($result_count);
   $total_data = $data_count['total'];
   $total_page = ceil($total_data / $limit);
 
-  // Query ambil data
-  $query = "SELECT * FROM anggota 
-        WHERE username LIKE '%$search%' OR 
-          email LIKE '%$search%' OR 
-          no_hp LIKE '%$search%'
+  // Query ambil data buku
+  $query = "SELECT * FROM buku 
+        WHERE judul LIKE '%$search%' OR 
+          penerbit LIKE '%$search%' OR 
+          pengarang LIKE '%$search%' OR 
+          isbn LIKE '%$search%'
         LIMIT $start, $limit";
   $result = mysqli_query($koneksi, $query);
 
   // Render header
-  renderHeader("Daftar Anggota", "anggota");
+  renderHeader("Daftar Buku", "buku");
 ?>
 
-<link rel="stylesheet" href="../../assets/css/anggota.css">
+<link rel="stylesheet" href="../../assets/css/buku.css">
 
 <div class="page-header">
-  <h1>Daftar Anggota</h1>
+  <h1>Daftar Buku</h1>
   <div>
-    <a href="tambah.php" class="btn btn-primary">
-      <i class="fas fa-plus"></i> Tambah Anggota
+    <a href="add.php" class="btn">
+      <i class="fas fa-plus"></i> Tambah Buku
     </a>
   </div>
 </div>
-
 <?php 
 // Tampilkan pesan sukses atau error
 if (isset($_SESSION['success'])) {
@@ -64,60 +65,56 @@ else if (isset($_SESSION['error'])) {
 
 <div class="card">
   <!-- Pencarian -->
-  <form method="get" class="search-form search-container">
-    <div style="flex-grow: 1;">
-      <input 
+  <form method="get" class="search-form custom-search-form">
+    <input 
       type="text" 
       name="search" 
-      placeholder="Cari anggota (username, email, no hp)..." 
+      placeholder="Cari buku (judul, penerbit, pengarang, ISBN)..." 
       value="<?php echo htmlspecialchars($search); ?>"
       class="search-input"
-      >
-    </div>
-    <div>
-      <button type="submit" class="btn btn-search">
-        <i class="fas fa-search"></i> Cari
-      </button>
-    </div>
+    >
+    <button type="submit" class="btn search-btn">
+      <i class="fas fa-search"></i> Cari
+    </button>
   </form>
 
-  <!-- Tabel Anggota -->
+  <!-- Tabel Buku -->
   <div class="table-responsive">
     <table>
       <thead>
         <tr>
           <th>No</th>
-          <th>Username</th>
-          <th>Email</th>
-          <th>No HP</th>
-          <th>Jenis Kelamin</th>
-          <th>Tanggal Daftar</th>
-          <th>Kelas</th>
+          <th>ISBN</th>
+          <th>Judul</th>
+          <th>Pengarang</th>
+          <th>Penerbit</th>
+          <th>Tahun Terbit</th>
+          <th>Kategori</th>
+          <th>Lokasi Rak</th>
           <th>Aksi</th>
         </tr>
       </thead>
       <tbody>
         <?php 
         $no = $start + 1;
-        while ($row = mysqli_fetch_assoc($result)) : 
+        while ($buku = mysqli_fetch_assoc($result)) : 
         ?>
           <tr>
             <td><?php echo $no++; ?></td>
-            <td><?php echo htmlspecialchars($row['username']); ?></td>
-            <td><?php echo htmlspecialchars($row['email']); ?></td>
-            <td><?php echo htmlspecialchars($row['no_hp']); ?></td>
-            <td><?php 
-              echo $row['jenis_kelamin'] == 1 ? 'Laki-laki' : 'Perempuan'; 
-            ?></td>
-            <td><?php echo date('d-m-Y', strtotime($row['tanggal_daftar'])); ?></td>
-            <td><?php echo htmlspecialchars($row['kelas']); ?></td>
+            <td><?php echo htmlspecialchars($buku['isbn']); ?></td>
+            <td><?php echo htmlspecialchars($buku['judul']); ?></td>
+            <td><?php echo htmlspecialchars($buku['pengarang']); ?></td>
+            <td><?php echo htmlspecialchars($buku['penerbit']); ?></td>
+            <td><?php echo htmlspecialchars($buku['tahun_terbit']); ?></td>
+            <td><?php echo htmlspecialchars($buku['kategori']); ?></td>
+            <td><?php echo htmlspecialchars($buku['lokasi_rak']); ?></td>
             <td>
-              <a href="edit.php?id=<?php echo $row['id_anggota']; ?>" class="btn btn-edit">
+              <a href="edit.php?id=<?php echo $buku['id_buku']; ?>" class="btn btn-edit">
                 <i class="fas fa-edit"></i>
               </a>
-              <a href="hapus.php?id=<?php echo $row['id_anggota']; ?>" 
+              <a href="delete.php?id=<?php echo $buku['id_buku']; ?>" 
                 class="btn btn-danger" 
-                onclick="return confirm('Apakah Anda yakin ingin menghapus anggota ini?');">
+                onclick="return confirm('Apakah Anda yakin ingin menghapus buku ini?');">
                 <i class="fas fa-trash"></i>
               </a>
             </td>
@@ -128,9 +125,9 @@ else if (isset($_SESSION['error'])) {
   </div>
 
   <!-- Pagination -->
-  <div class="pagination pagination-container">
+  <div class="pagination custom-pagination">
     <?php if($page > 1): ?>
-      <a href="?page=<?php echo $page-1; ?>&search=<?php echo urlencode($search); ?>" class="btn pagination-prev">
+      <a href="?page=<?php echo $page-1; ?>&search=<?php echo urlencode($search); ?>" class="btn btn-edit2x">
         <i class="fas fa-chevron-left"></i> Sebelumnya
       </a>
     <?php endif; ?>
@@ -144,6 +141,6 @@ else if (isset($_SESSION['error'])) {
 </div>
 
 <?php
-// Render footer
-renderFooter();
+  // Render footer
+  renderFooter();
 ?>

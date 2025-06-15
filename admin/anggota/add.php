@@ -1,5 +1,5 @@
 <?php
-  // modul/anggota/tambah.php
+  // modul/anggota/add.php
   session_start();
   require_once '../../config/koneksi.php';
   require_once '../../includes/layout.php';
@@ -77,7 +77,7 @@
     </div>
   <?php endif; ?>
 
-  <form method="post" action="" class="form-wrapper">
+  <form method="post" action="" class="form-container">
     <div class="form-group">
       <label for="username" class="form-label">Nama Lengkap</label>
       <input 

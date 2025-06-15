@@ -26,7 +26,7 @@
     if (mysqli_num_rows($result_cek) > 0) {
       // Buku sedang dipinjam
       $_SESSION['error'] = "Buku ini sedang dipinjam dan tidak tersedia.";
-      redirect('tambah.php');
+      redirect('add.php');
     }
     
     // Cek jumlah buku yang sedang dipinjam oleh anggota
@@ -37,7 +37,7 @@
     if ($data_limit['jumlah'] >= 3) {
       // Anggota sudah meminjam maksimal 3 buku
       $_SESSION['error'] = "Anggota ini sudah meminjam 3 buku (batas maksimum).";
-      redirect('tambah.php');
+      redirect('add.php');
     }
     
     // Insert data peminjaman
@@ -49,7 +49,7 @@
       redirect('index.php');
     } else {
       $_SESSION['error'] = "Gagal mencatat peminjaman buku: " . mysqli_error($koneksi);
-      redirect('tambah.php');
+      redirect('add.php');
     }
   } 
   // Proses pengembalian buku
